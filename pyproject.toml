@@ -5,6 +5,7 @@ description = ""
 authors = [
     {name = "Hugo Rodrigues Dias", email = "rodrigueshugodias@gmail.com"}
 ]
+
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
@@ -16,7 +17,7 @@ name = "project-saas"
 version = "0.1.0"
 description = ""
 authors = ["Hugo Rodrigues Dias <rodrigueshugodias@gmail.com>"]
-
+package-mode = false
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
