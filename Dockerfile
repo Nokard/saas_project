@@ -4,6 +4,7 @@ FROM python:3.13-slim
 # Diretório de trabalho
 WORKDIR /app
 
+
 # Poetry install
 ENV POETRY_VERSION=2.2.1
 RUN pip install "poetry==${POETRY_VERSION}"
