@@ -17,12 +17,12 @@ config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-DATABASE_URL = os.environ.get('DATABASE_URL')
-
-if not DATABASE_URL:
-    raise RuntimeError("DATABASE_URL não definida")
-
-config.set_main_option("sqlalchemy.url", DATABASE_URL)
+# Local: SQLite | Produção (Render): PostgreSQL via DATABASE_URL
+DATABASE_URL = os.environ.get('DATABASE_URL', 'sqlite:///database.db')
+if DATABASE_URL.startswith('postgres://'):
+    DATABASE_URL = DATABASE_URL.replace('postgres://', 'postgresql://', 1)
+# Escape % para ConfigParser (interpreta % como interpolação; senhas com %40 etc quebram)
+config.set_main_option("sqlalchemy.url", DATABASE_URL.replace("%", "%%"))
 
 # add your model's MetaData object here
 # for 'autogenerate' support
